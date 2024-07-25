@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import React from 'react';
 // import { Link } from 'react-router-dom';
 
@@ -8,24 +9,25 @@ const Sidebar = () => {
     <div className="sidebar">
       <ul>
 
+<Link href="/">
           <li className="sidebar-item">
             <span className="icon">🏠</span>
             <span className="label">Dashboard</span>
           </li>
-
-
+</Link>
+          <Link href="/master">
           <li className="sidebar-item">
             <span className="icon">📁</span>
             <span className="label">Master</span>
           </li>
+</Link>
 
-
-
+          <Link href="/billing">
           <li className="sidebar-item">
             <span className="icon">🧾</span>
             <span className="label">Billing</span>
           </li>
-
+</Link>
       </ul>
       <style jsx>{`
         .sidebar {

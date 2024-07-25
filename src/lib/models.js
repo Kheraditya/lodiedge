@@ -44,9 +44,24 @@ const customerSchema = new mongoose.Schema(
   name:{
   type:String,
   },
+  customerId:{
+    type:String
+  },
   amount:{
   type:String,
-  }},
+  },
+  items: [
+    {
+      type: {
+        type: String,
+        required: true,
+      },
+      value: {
+        type: Number,
+        required: true,
+      },
+    },
+  ],},
 {timestamps:true})
 
 export const Customer = mongoose.models.Customer || mongoose.model("Customer", customerSchema);

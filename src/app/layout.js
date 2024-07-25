@@ -1,5 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
+import styles from "@/components/style.module.css"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,8 +13,62 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+    <>
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <body>
+     <Header />
+    <div className={styles.container}>
+     <Sidebar/>
+     <div className={styles.content}>
+     <main>
+          <div >{children}</div>
+        </main>
+        </div>
+        </div>
+        </body>
     </html>
+    {/* <style jsx>{`
+.container {
+  display: flex;
+}
+
+.menu {
+  flex: 1;
+  background-color: var(--bgSoft);
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 4;
+  padding: 20px;
+}
+
+.wrapper {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.main {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cards {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.side {
+  flex: 1;
+}
+`}</style> */}
+    </>
   );
 }
+
+

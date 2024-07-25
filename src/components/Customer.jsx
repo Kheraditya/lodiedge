@@ -2,17 +2,22 @@
 
 import React from "react";
 import CustomCard from "./Cards/CustomCard";
+import Link from "next/link";
 
 const Customer = () => {
   return (
     <>
       <div className="master">
         <h1>Customer</h1>
+        <Link href="/master/customer/customerForm">
         <div className="add-button-container">
             <button className="add-button">ADD</button>
         </div>
+        </Link>
         <div className="cards">
+        <Link href="/master/customer/customerForm">
             <CustomCard companyName="oss pvt. ltd." status="Active" statusClass="active" />
+            </Link>
         </div>
       </div>
       <style jsx>{`
