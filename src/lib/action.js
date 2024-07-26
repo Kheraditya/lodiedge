@@ -1,3 +1,4 @@
+"use server";
 import {Customer,Order,Item } from "./models";
 import { connectToDB } from "./db";
 import { redirect } from "next/navigation";
@@ -16,6 +17,29 @@ export const addCustomer = async (formData) => {
     } catch (err) {
       console.log(err);
       throw new Error("Failed to create user!");
+    }
+  
+    // revalidatePath("/dashboard/users");
+    redirect("/master");
+  };
+export const updateCustomer = async (formData) => {
+    const { name, address, pancard, gst, status,id } = Object.fromEntries(formData);
+    // const objId = JSON.parse(id);
+    // const objId = eval(`(${id})`)
+    // console.log({objId});
+    console.log({id});
+  
+    try {
+      connectToDB();
+  
+      const updateFields = new Customer({
+        name, address, pancard, gst, status
+      });
+  
+      await Customer.findByIdAndUpdate(id, updateFields, { new: true });
+    } catch (err) {
+      console.log(err);
+      throw new Error("Failed to update product!");
     }
   
     // revalidatePath("/dashboard/users");

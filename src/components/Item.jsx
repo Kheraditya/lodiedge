@@ -1,10 +1,16 @@
-'use client';
+// 'use client';
 
 import React from "react";
 import CustomCard from "./Cards/CustomCard";
 import Link from "next/link";
+import { fetchItems } from "@/lib/data";
 
-const Item = () => {
+const Item = async() => {
+  let items = await fetchItems();
+  if(items === null || undefined){
+    items=[];
+    console.log({items});
+  }
   return (
     <>
       <div className="master">
@@ -15,16 +21,19 @@ const Item = () => {
         </div>
             </Link>
         <div className="cards">
-        <Link href="/master/items/itemForm">
-            <CustomCard
+        {items.map((item)=>(
+        <Link href={`/master/items/itemForm?id=${item.name}`}>
+          <CustomCard companyName={item.name} status={item.status} statusClass="active" />
+            </Link>
+        ))}
+            {/* <CustomCard
               companyName="Laptop"
               status="Active"
               statusClass="active"
-            />
-            </Link>
+            /> */}
         </div>
       </div>
-      <style jsx>{`
+      {/* <style jsx>{`
         .master {
           padding: 20px;
           width: 100%;
@@ -68,7 +77,7 @@ const Item = () => {
           margin-right: 5px;
           font-size: 20px;
         }
-      `}</style>
+      `}</style> */}
     </>
   );
 };

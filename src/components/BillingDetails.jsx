@@ -1,8 +1,12 @@
 'use client';
 import React, { useState } from 'react';
 import ItemCard from './Cards/ItemCard';
+import Link from 'next/link';
+// import { fetchUser } from '@/lib/data';
+// import { billing } from '@/lib/action';
 
-const BillingDetails = () => {
+const BillingDetails = ({name}) => {
+  // const customer = await fetchUser(name);
   const customer = {
     name: 'Gupta Enterprise Pvt. Ltd.',
     address: 'Gurgaon, Haryana',
@@ -55,6 +59,7 @@ const BillingDetails = () => {
             <span className="detail-label">Pan Card</span> : <span className="detail-value">{customer.panCard}</span>
           </div>
           <div className="customer-detail">
+            {/* <span className="detail-label">GST Num</span> : <span className="detail-value">{customer.gst}</span> */}
             <span className="detail-label">GST Num</span> : <span className="detail-value">{customer.gstNum}</span>
           </div>
         </div>
@@ -92,6 +97,37 @@ const BillingDetails = () => {
           </div>
         </div>
       )}
+
+      <div>
+      <div className="items">
+        <h2>Items</h2>
+        <div className="item-row">
+          <span>Name</span>
+          <span>Amount</span>
+          <span>Amount</span>
+        </div>
+        <div className="item-row">
+          <span>Laptop</span>
+          <span className="amount-controls">
+            <button>-</button>
+            <span>1</span>
+            <button>+</button>
+          </span>
+          <span>85000</span>
+        </div>
+        <div className="total-row">
+          <span>Total</span>
+          <span>85000</span>
+        </div>
+      </div>
+      <div className="action-buttons">
+        <button className="cancel">Cancel</button>
+        <Link href="/billing/test/test">
+        <button className="create">Create</button>
+        </Link>
+      </div>
+    </div>
+      
 
       <style jsx>{`
         .billing-details {

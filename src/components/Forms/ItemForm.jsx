@@ -1,25 +1,28 @@
-'use client';
+// 'use client';
 
 import React from 'react';
-
-const ItemForm = () => {
+import { fetchItem } from '@/lib/data';
+import { addItem } from '@/lib/action';
+const ItemForm = async({id}) => {
+  const item = await fetchItem(id);
   return (
     <div className="form-container">
       <h2>Add New Item</h2>
-      <form>
+      {id === "" ?
+        <form action={addItem}>
         <div className="form-group">
           <label htmlFor="itemName">Item Name</label>
-          <input type="text" id="itemName" name="itemName" />
+          <input type="text" id="name" name="name"  />
         </div>
         <div className="form-group">
           <label htmlFor="itemDescription">Item Description</label>
-          <input type="text" id="itemDescription" name="itemDescription" />
+          <input type="text" id="itemDescription" name="price"  />
         </div>
         <div className="form-group">
           <label htmlFor="itemStatus">Item Status</label>
           <select id="itemStatus" name="itemStatus">
-            <option value="available">Available</option>
-            <option value="out_of_stock">Out of Stock</option>
+            <option value="Y">Available</option>
+            <option value="N">Out of Stock</option>
           </select>
         </div>
         <div className="form-actions">
@@ -27,7 +30,29 @@ const ItemForm = () => {
           <button type="submit" className="create-button">Create</button>
         </div>
       </form>
-      <style jsx>{`
+      :
+      <form action="">
+        <div className="form-group">
+          <label htmlFor="itemName">Item Name</label>
+          <input type="text" id="itemName" name="name" placeholder={item.name} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="itemDescription">Item Price</label>
+          <input type="text" id="price" name="itemDescription" placeholder={item.price}/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="itemStatus">Item Status</label>
+          <select id="itemStatus" name="status">
+            <option value="Y">Available</option>
+            <option value="N">Out of Stock</option>
+          </select>
+        </div>
+        <div className="form-actions">
+          <button type="button" className="cancel-button">Cancel</button>
+          <button type="submit" className="create-button">Create</button>
+        </div>
+      </form>}
+      {/* <style jsx>{`
         body {
           font-family: Arial, sans-serif;
         }
@@ -96,7 +121,7 @@ const ItemForm = () => {
           background-color: navy;
           color: white;
         }
-      `}</style>
+      `}</style> */}
     </div>
   );
 };

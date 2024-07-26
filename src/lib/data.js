@@ -36,8 +36,8 @@ export const fetchItems = async () => {
     const regex = new RegExp("", "i");
     try {
       connectToDB();
-      const customer = await Item.find({ name: { $regex: regex } })
-      return  customer ;
+      const items = await Item.find({ name: { $regex: regex } })
+      return  items ;
     } catch (err) {
       console.log(err);
       // throw new Error("Failed to fetch users!");
@@ -89,9 +89,9 @@ export const fetchItemsId = async (id) => {
       connectToDB();
       console.log({ userId, courseId });
       const order = await Order.findOne({invoiceId: invoiceId });
-      const customer = await Customer.findById(id);
+    //   const customer = await Customer.findById(id);
       console.log(order);
-      return {order,customer};
+      return order;
     } catch (err) {
       console.log(err);
       throw new Error("Failed to fetch order!");

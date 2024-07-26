@@ -1,10 +1,13 @@
-'use client';
+// 'use client';
 
 import React from "react";
 import CustomCard from "./Cards/CustomCard";
 import Link from "next/link";
+import { fetchUsers } from '@/lib/data';
 
-const Customer = () => {
+const Customer = async() => {
+  const customers = await fetchUsers();
+console.log({customers});
   return (
     <>
       <div className="master">
@@ -15,12 +18,15 @@ const Customer = () => {
         </div>
         </Link>
         <div className="cards">
-        <Link href="/master/customer/customerForm">
-            <CustomCard companyName="oss pvt. ltd." status="Active" statusClass="active" />
+        {customers.map((customer)=>(
+        <Link href={`/master/customer/customerForm?id=${customer.name}`}>
+          <CustomCard companyName={customer.name} status={customer.status} statusClass="active" />
+        {/* <CustomCard companyName="oss pvt. ltd." status="Active" statusClass="active" /> */}
             </Link>
+        ))}
         </div>
       </div>
-      <style jsx>{`
+      {/* <style jsx>{`
         .master {
           padding: 20px;
           width: 100%;
@@ -64,7 +70,7 @@ const Customer = () => {
           margin-right: 5px;
           font-size: 20px;
         }
-      `}</style>
+      `}</style> */}
     </>
   );
 };

@@ -3,9 +3,11 @@
 import React from "react";
 
 const CustomCard = ({ companyName, status, statusClass }) => {
+  
+
   return (
     <div className="card">
-      <div className="card-content">
+      <div className="card-content" >
         <span className="company-name">{companyName}</span>
         <span className={`status ${statusClass}`}>{status}</span>
       </div>

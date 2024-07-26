@@ -2,8 +2,11 @@
 
 import React, { useState } from 'react';
 import CustomCard from './Cards/CustomCard';
+import Link from 'next/link';
+// import { fetchUsers } from '@/lib/data';
 
 const Billing = () => {
+// const customers = await fetchUsers();
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
 
   const openOverlay = () => {
@@ -49,12 +52,14 @@ const Billing = () => {
             <div className="customer-selector-container">
               <div className="customer-selector-grid">
                 {customers.map((customer, index) => (
+                  <Link href={`/billing/${customer.name}`}>
                   <CustomCard
                     key={index}
                     companyName={customer.name}
                     status={customer.status}
-                    statusClass={customer.statusClass}
+                    // statusClass={customer.statusClass}
                   />
+                  </Link>
                 ))}
               </div>
             </div>

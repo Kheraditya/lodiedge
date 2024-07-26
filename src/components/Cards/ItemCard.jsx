@@ -1,4 +1,4 @@
-'use client';
+// 'use client';
 import React, { useState } from 'react';
 
 const ItemCard = ({ name, status }) => {
@@ -39,7 +39,7 @@ const ItemCard = ({ name, status }) => {
         <div className="inactive-label">In-Active</div>
       )}
 
-      <style jsx>{`
+      {/* <style jsx>{`
         .item-card {
           border: 1px solid #ddd;
           border-radius: 5px;
@@ -94,7 +94,7 @@ const ItemCard = ({ name, status }) => {
           color: red;
           font-weight: bold;
         }
-      `}</style>
+      `}</style> */}
     </div>
   );
 };

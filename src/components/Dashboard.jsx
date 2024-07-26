@@ -1,8 +1,12 @@
-'use client';
+// 'use client';
 
+import Link from 'next/link';
 import React from 'react';
+import { fetchUser } from '@/lib/data';
 
-const Dashboard = () => {
+const Dashboard = async({invoiceId,name}) => {
+// const order = await fetchOrder()
+// const customer = await fetchUser(name)
   return (
     <div className="dashboard-container">
       <h1>Dashboard</h1>
@@ -28,13 +32,15 @@ const Dashboard = () => {
             <td>Laptop</td>
             <td>85000</td>
             <td>
+            <Link href={`/dashboard/${invoiceId}?id=${name}`}>
                 <button className="view-button">View</button>
+                </Link>
             </td>
           </tr>
         </tbody>
       </table>
 
-      <style jsx>{`
+      {/* <style jsx>{`
         .dashboard-container {
           width: 80%;
           margin: 0 auto;
@@ -81,7 +87,7 @@ const Dashboard = () => {
         .view-button:hover {
           background-color: #1f193d;
         }
-      `}</style>
+      `}</style> */}
     </div>
   );
 };

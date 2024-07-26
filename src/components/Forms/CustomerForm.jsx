@@ -1,33 +1,38 @@
-'use client';
-
+// 'use client';
+"use server";
 import React from 'react';
-
-const AddCustomerForm = () => {
+import { fetchUser } from '@/lib/data';
+import { addCustomer,updateCustomer } from '@/lib/action';
+const AddCustomerForm = async({id}) => {
+  const customer = await fetchUser(id);
   return (
     <div className="form-container">
       <h2>Add New Customer</h2>
-      <form>
+      {id === "" ? 
+        <form action={addCustomer}>
+      {/* <input hidden={true} value={customer._id.toString()}/> */}
         <div className="form-group">
           <label htmlFor="customerName">Customer Name</label>
-          <input type="text" id="customerName" name="customerName" />
+          <input type="text" id="customerName" name="name"    />
         </div>
         <div className="form-group">
           <label htmlFor="customerAddress">Customer Address</label>
-          <input type="text" id="customerAddress" name="customerAddress" />
+          <input type="text" id="customerAddress" name="address"  />
         </div>
         <div className="form-group">
           <label htmlFor="customerPan">Customer Pan Card Number</label>
-          <input type="text" id="customerPan" name="customerPan" />
+          <input type="text" id="customerPan" name="pancard"  />
         </div>
         <div className="form-group">
           <label htmlFor="customerGst">Customer GST Number</label>
-          <input type="text" id="customerGst" name="customerGst" />
+          <input type="text" id="customerGst" name="gst" />
         </div>
         <div className="form-group">
           <label htmlFor="customerStatus">Customer Status</label>
-          <select id="customerStatus" name="customerStatus">
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
+          <select id="customerStatus" name="status">
+            {/* <option  ></option> */}
+            <option value="Y" >Active</option>
+            <option value="N" >inactive</option>
           </select>
         </div>
         <div className="form-actions">
@@ -35,7 +40,71 @@ const AddCustomerForm = () => {
           <button type="submit" className="create-button">Create</button>
         </div>
       </form>
-      <style jsx>{`
+      :
+      <form action={updateCustomer}>
+      <input hidden={true} value={customer._id.toString()} name='id'/>
+        <div className="form-group">
+          <label htmlFor="customerName">Customer Name</label>
+          <input type="text" id="customerName" name="name" placeholder={customer.name}   />
+        </div>
+        <div className="form-group">
+          <label htmlFor="customerAddress">Customer Address</label>
+          <input type="text" id="customerAddress" name="address" placeholder={customer.name} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="customerPan">Customer Pan Card Number</label>
+          <input type="text" id="customerPan" name="pancard" placeholder={customer.name} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="customerGst">Customer GST Number</label>
+          <input type="text" id="customerGst" name="gst" placeholder={customer.name}/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="customerStatus">Customer Status</label>
+          <select id="customerStatus" name="status">
+            {/* <option  ></option> */}
+            <option value="Y" >Active</option>
+            <option value="N" >inactive</option>
+          </select>
+        </div>
+        <div className="form-actions">
+          <button type="button" className="cancel-button">Cancel</button>
+          <button type="submit" className="create-button">Create</button>
+        </div>
+      </form>
+      }
+      {/* <form action={action}>
+      <input hidden={true} value={customer._id.toString()}/>
+        <div className="form-group">
+          <label htmlFor="customerName">Customer Name</label>
+          <input type="text" id="customerName" name="name" placeholder={customer.name}   />
+        </div>
+        <div className="form-group">
+          <label htmlFor="customerAddress">Customer Address</label>
+          <input type="text" id="customerAddress" name="address" placeholder={customer.name} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="customerPan">Customer Pan Card Number</label>
+          <input type="text" id="customerPan" name="pancard" placeholder={customer.name} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="customerGst">Customer GST Number</label>
+          <input type="text" id="customerGst" name="gst" placeholder={customer.name}/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="customerStatus">Customer Status</label>
+          <select id="customerStatus" name="status">
+            {/* <option  ></option> */}
+            {/* <option value="Y" >Active</option>
+            <option value="N" >inactive</option>
+          </select>
+        </div>
+        <div className="form-actions">
+          <button type="button" className="cancel-button">Cancel</button>
+          <button type="submit" className="create-button">Create</button>
+        </div>
+      </form>  */}
+      {/* <style jsx>{`
         body {
           font-family: Arial, sans-serif;
         }
@@ -104,7 +173,7 @@ const AddCustomerForm = () => {
           background-color: navy;
           color: white;
         }
-      `}</style>
+      `}</style> */}
     </div>
   );
 };

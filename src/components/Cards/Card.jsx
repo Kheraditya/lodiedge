@@ -1,13 +1,16 @@
-'use client';
+// 'use client';
 
 import React from 'react';
+// import { fetchUsers } from '@/lib/data';
 
 const Card = ({ title, description }) => {
+// const customer = await fetchUsers();
+// console.log({customer});
   return (
     <div className="card">
       <h3>{title}</h3>
       <p>{description}</p>
-      <style jsx>{`
+      {/* <style jsx>{`
         .card {
           border: 1px solid #ddd;
           border-radius: 8px;
@@ -29,7 +32,7 @@ const Card = ({ title, description }) => {
           margin: 0;
           color: #555;
         }
-      `}</style>
+      `}</style> */}
     </div>
   );
 };

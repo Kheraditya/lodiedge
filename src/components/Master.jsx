@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import React from "react";
 import Card from "./Cards/Card";
@@ -16,7 +16,7 @@ const Master = () => {
         <Card title="Items" description="Read or Create items data" />
         </Link>
       </div>
-      <style jsx>{`
+      {/* <style jsx>{`
         .master {
           padding: 20px;
           width: 100%;
@@ -31,7 +31,7 @@ const Master = () => {
           display: flex;
           gap: 20px;
         }
-      `}</style>
+      `}</style> */}
     </div>
   );
 };
